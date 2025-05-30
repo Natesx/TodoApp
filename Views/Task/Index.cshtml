@@ -1,0 +1,35 @@
+@using TodoApp.Models
+@model IEnumerable<TodoTask>
+
+<div class="container mt-4">
+    <h2 class="mb-4">Lista zadań</h2>
+    
+    <table class="table table-striped">
+        <thead class="table-dark">
+            <tr>
+                <th>Tytuł</th>
+                <th>Opis</th>
+                <th>Data utworzenia</th>
+                <th>Akcje</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Title</td>
+                    <td>@item.Description</td>
+                    <td>@item.CreatedAt.ToString("dd.MM.yyyy HH:mm")</td>
+                    <td>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-warning">Edytuj</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Usuń</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+    <a asp-action="Create" class="btn btn-success">
+        <i class="bi bi-plus-circle"></i> Nowe zadanie
+    </a>
+</div>
